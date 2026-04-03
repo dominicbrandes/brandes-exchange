@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brandes-exchange"
+version = "1.0.0"
+description = "High-performance trading infrastructure with AI research agent"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Dominic Brandes", email = "dominic@example.com"}
+]
+keywords = ["ai", "agent", "defi", "crypto", "research", "eigenlayer"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "anthropic>=0.18.0",
+    "httpx>=0.24.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+web3 = [
+    "web3>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/dominicbrandes/sentinel-agent"
+Documentation = "https://github.com/dominicbrandes/sentinel-agent#readme"
+Repository = "https://github.com/dominicbrandes/sentinel-agent.git"
+Issues = "https://github.com/dominicbrandes/sentinel-agent/issues"
+
+[project.scripts]
+sentinel = "agent.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["agent*", "tools*", "memory*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
